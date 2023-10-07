@@ -5,7 +5,7 @@ from flask import Flask, render_template, request
 
 # dummy intrest data 
 interest_data = pd.DataFrame({
-    'projects': ['project0', 'project1', 'project2', 'project3', 'project4', 'project5', 'project6'],
+    'projects': ['Cloudspotting On MARS', 'Dark Energy Exploreers', 'Planeet Hunter TESS', 'Exoplanet Watch', 'NeMO-Net', 'Are We Alone In Universe?', 'Landslide Reporter'],
     'Interests': ['space', 'Environment', 'Society', 'Web', 'mobile', 'Android', 'Programming']
 })
 
@@ -20,16 +20,18 @@ initial_user_preferences = {
     'Programming': 1,
 }
 
+
 # Demo for the project to be given according to the intrest above
 project_interests = {
-    'project0': ['space', 'Programming'],
-    'project1': ['Environment', 'Society'],
-    'project2': ['Society', 'Web'],
-    'project3': ['Web', 'mobile'],
-    'project4': ['Android', 'Programming'],
-    'project5': ['space', 'Society'],
-    'project6': ['Environment', 'Programming'],
+    'Cloudspotting On Mars': ['space', 'Programming'],
+    'Dark Energy Explorers': ['Environment', 'Society'],
+    'Planet Hunter TESS': ['Society', 'Web'],
+    'Exoplanet Watch': ['Web', 'mobile'],
+    'Nemo-Net': ['Android', 'Programming'],
+    'Are We Alone In The Universe': ['space', 'Society'],
+    'Landslide Reporter': ['Environment', 'Programming'],
 }
+
 
 # Create a TF-IDF vectorizer to convert interest text into numerical features
 tfidf_vectorizer = TfidfVectorizer(stop_words='english')
@@ -70,9 +72,9 @@ def index():
             if suggested_interest in interests:
                 suggested_projects.append(project)
 
-        return render_template('index1.html', interest_data=interest_data, suggested_projects=suggested_projects)
+        return render_template('index.html', interest_data=interest_data, suggested_projects=suggested_projects)
 
-    return render_template('index1.html', interest_data=interest_data)
+    return render_template('index.html', interest_data=interest_data)
 
 if __name__ == '__main__':
     app.run(debug=False, port=5000)
