@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interest Recommender</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #282c35; /* Dark background color */
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+
+      h1 {
+        color: #007bff; /* Bright blue for the title */
+      }
+
+      form {
+        background-color: #333; /* Darker shade of dark */
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 60%;
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: left; /* Align form content to the left */
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      h2 {
+        margin-top: 20px;
+        color: #007bff; /* Bright blue for section headers */
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-style: italic;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Interest Recommender</h1>
+    <form method="POST">
+      <h2>Choose Your Interests:</h2>
+      {% for interest in interest_data['Interests'] %}
+      <label>
+        <input type="checkbox" name="{{ interest }}" value="1" />
+        {{ interest }} </label
+      ><br />
+      {% endfor %}
+      <br />
+      <input type="submit" value="Get Recommendations" />
+    </form>
+
+    {% if suggested_projects %}
+    <h2>Suggested Projects:</h2>
+    <ul>
+      {% for project in suggested_projects %}
+      <li>{{ project }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>
